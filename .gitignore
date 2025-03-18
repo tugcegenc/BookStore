@@ -22,3 +22,10 @@ Thumbs.db
 
 # MacOS için ekstra
 *.DS_Store
+
+global.json
+appsettings.json
+appsettings.Development.json
+WebApi.csproj
+.idea
+WebApi.http
