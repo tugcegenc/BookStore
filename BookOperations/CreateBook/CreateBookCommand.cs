@@ -1,3 +1,4 @@
+using AutoMapper;
 using WebApi.DBOperations;
 
 namespace WebApi.BookOperations.CeateBook
@@ -6,9 +7,11 @@ namespace WebApi.BookOperations.CeateBook
     {
         public CreateBookModel Model { get; set; }
         private readonly BookStoreDbContext _dbcontext;
-        public CreateBookCommand(BookStoreDbContext dbcontext)
+        private readonly IMapper _mapper;
+        public CreateBookCommand(BookStoreDbContext dbcontext, IMapper mapper)
         {
             _dbcontext = dbcontext;
+            _mapper = mapper;
         }
         public void Handle()
         {
@@ -16,11 +19,17 @@ namespace WebApi.BookOperations.CeateBook
             if (book != null)
                 throw new InvalidOperationException("Kitap zaten mevcut.");
                 book = new Book();
+                book = _mapper.Map<Book>(Model);
+             
+               /*
                 book.Title = Model.Title;
                 book.GenreId = Model.GenreId;
                 book.PageCount = Model.PageCount;
-                book.PublishDate = Model.PublishDate;
-          
+                book.PublishDate = Model.PublishDate;   
+                */
+
+                _dbcontext.Books.Add(book);
+                _dbcontext.SaveChanges();
         }
     }
     public class CreateBookModel
