@@ -1,0 +1,24 @@
+# Build dosyaları
+bin/
+obj/
+
+# Kullanıcıya özel dosyalar
+*.user
+*.suo
+.vscode/
+*.vs/
+*.db
+
+# Log dosyaları
+*.log
+
+# .NET bağımlılıkları
+packages/
+node_modules/
+
+# IDE ve işletim sistemi dosyaları
+.DS_Store
+Thumbs.db
+
+# MacOS için ekstra
+*.DS_Store

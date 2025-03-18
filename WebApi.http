@@ -1,0 +1,8 @@
+@WebApi_HostAddress = http://localhost:5015
+<TargetFramework>net8.0</TargetFramework>
+
+
+GET {{WebApi_HostAddress}}/WebApi/
+Accept: application/json
+
+###
