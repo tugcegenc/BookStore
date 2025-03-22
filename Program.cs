@@ -5,10 +5,15 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using WebApi;
 using WebApi.DBOperations;
+using WebApi.Middlewares;
+using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// ---------------------
+// Add services to the container
+// ---------------------
+
 builder.Services.AddControllers();
 
 // Swagger
@@ -34,16 +39,23 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
+// Custom Logger Service
+builder.Services.AddSingleton<ILoggerService, ConsoleLogger>();
+
 var app = builder.Build();
 
+// ---------------------
 // Database seeding
+// ---------------------
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     DataGenerator.Initialize(services);
 }
 
-// Configure the HTTP request pipeline.
+// ---------------------
+// Configure the HTTP request pipeline
+// ---------------------
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -56,6 +68,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
+
+app.UseCustomExceptionMiddleware();
 
 app.MapControllers();
 

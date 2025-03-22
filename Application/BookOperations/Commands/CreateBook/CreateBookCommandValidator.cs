@@ -1,6 +1,7 @@
 using FluentValidation;
+using WebApi.Application.BookOperations.Commands.CreateBook;
 
-namespace WebApi.BookOperations.CeateBook;
+namespace WebApi.Application.BookOperations.Commands.CreateBook;
 
 public class CreateBookCommandValidator : AbstractValidator<CreateBookCommand>
 {
