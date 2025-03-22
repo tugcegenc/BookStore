@@ -25,12 +25,6 @@ namespace WebApi.Application.BookOperations.Queries
 
             BookDetailViewModel vm = _mapper.Map<BookDetailViewModel>(book);
             
-            /*
-            vm.Title = book.Title;
-            vm.Genre = ((GenreEnum)book.GenreId).ToString();
-            vm.PublishDate = book.PublishDate.Date.ToString("dd/MM/yyyy");
-            vm.PageCount = book.PageCount;
-             */
             return vm;
            
         }
@@ -39,6 +33,7 @@ namespace WebApi.Application.BookOperations.Queries
     {
         public string Title { get; set; }
         public string Genre { get; set; }
+        public string Author { get; set; }
         public string PublishDate { get; set; }
         public int PageCount { get; set; }
     }

@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using WebApi.DBOperations;
 
 namespace WebApi.Application.GenreOperations.UpdateGenre
